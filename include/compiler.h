@@ -49,6 +49,7 @@
 #define __maybe_unused                  __attribute__((__unused__))
 #define __used                          __attribute__((__used__))
 #define __weak                          __attribute__((__weak__))
+#define __deprecated                    __attribute__ ((deprecated))
 
 #ifndef	u8
 #define u8 unsigned char
