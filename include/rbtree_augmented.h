@@ -24,6 +24,7 @@
 #ifndef _LINUX_RBTREE_AUGMENTED_H
 #define _LINUX_RBTREE_AUGMENTED_H
 
+#include <stdbool.h>
 #include <compiler.h>
 #include <rbtree.h>
 
