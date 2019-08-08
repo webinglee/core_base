@@ -61,6 +61,12 @@
 #define __weak                          __attribute__((__weak__))
 #define __deprecated                    __attribute__ ((deprecated))
 
+#define offsetof(a,b) ((int)(&(((a*)(0))->b)))
+#define container_of(ptr, type, member) ({ 	\
+    const typeof( ((type *)0)->member )			\
+    *__mptr = (ptr);												\
+    (type *)( (char *)__mptr - offsetof(type,member) );})
+
 #ifndef min
 #define min(x,y) ((x) < (y) ? (x) : (y))
 #endif
