@@ -62,6 +62,7 @@
 
 #include <stdatomic.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 struct llist_head {
 	struct llist_node *first;

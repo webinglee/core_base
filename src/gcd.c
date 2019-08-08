@@ -1,5 +1,5 @@
 #include <gcd.h>
-
+#include <compiler.h>
 /*
  * This implements the binary GCD algorithm. (Often attributed to Stein,
  * but as Knuth has noted, appears in a first-century Chinese math text.)
@@ -8,7 +8,7 @@
  * has decent hardware division.
  */
 
-#if 0 && !defined(CONFIG_CPU_NO_EFFICIENT_FFS) && !defined(CPU_NO_EFFICIENT_FFS)
+#if defined(__ffsl)
 
 /* If __ffs is available, the even/odd algorithm benchmarks slower. */
 
@@ -24,16 +24,16 @@ unsigned long gcd(unsigned long a, unsigned long b)
 	if (!a || !b)
 		return r;
 
-	b >>= __ffs(b);
+	b >>= __ffsl(b);
 	if (b == 1)
 		return r & -r;
 
 	for (;;) {
-		a >>= __ffs(a);
+		a >>= __ffsl(a);
 		if (a == 1)
 			return r & -r;
 		if (a == b)
-			return a << __ffs(r);
+			return a << __ffsl(r);
 
 		if (a < b)
 			swap(a, b);

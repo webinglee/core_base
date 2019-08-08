@@ -4,13 +4,23 @@
 #define likely(x)	                      __builtin_expect(!!(x), 1)
 #define unlikely(x)	                    __builtin_expect(!!(x), 0)
 
+#define __ffs														__builtin_ffs
+#define __clz														__builtin_clz
+#define __ctz														__builtin_ctz
+#define __ffsl													__builtin_ffsl
+#define __clzl													__builtin_clzl
+#define __ctzl													__builtin_ctzl
+#define __ffsll													__builtin_ffsll
+#define __clzll													__builtin_clzll
+#define __ctzll													__builtin_ctzll
+
 #define barrier()                       __asm__ __volatile__("": : :"memory")
 #define barrier_data(ptr)               __asm__ __volatile__("": :"r"(ptr) :"memory")
 
 #define __user		__attribute__((noderef, address_space(1)))
 #define __kernel	__attribute__((address_space(0)))
 #define __safe		__attribute__((safe))
-#define __force	  __attribute__((force))
+#define __force	  //__attribute__((force))
 #define __nocast	__attribute__((nocast))
 #define __iomem	  __attribute__((noderef, address_space(2)))
 #define __must_hold(x)	__attribute__((context(x,1,1)))
@@ -31,7 +41,7 @@
 #define __always_inline                 inline __attribute__((__always_inline__))
 #endif
 
-#define __gnu_inline                    __attribute__((__gnu_inline__))
+#define __gnu_inline                    __attribute__((gnu_inline))
 #define   noinline                      __attribute__((__noinline__))
 
 #define __cold                          __attribute__((__cold__))
@@ -50,6 +60,22 @@
 #define __used                          __attribute__((__used__))
 #define __weak                          __attribute__((__weak__))
 #define __deprecated                    __attribute__ ((deprecated))
+
+#ifndef min
+#define min(x,y) ((x) < (y) ? (x) : (y))
+#endif
+
+#ifndef max
+#define max(x,y) ((x) > (y) ? (x) : (y))
+#endif
+
+#ifndef swap
+#define swap(x, y)	do {	\
+	typeof(x) __val = x;		\
+	x = y;									\
+	y = __val;							\
+}while (0)
+#endif
 
 #ifndef	u8
 #define u8 unsigned char

@@ -46,7 +46,7 @@ static void merge_and_restore_back_links(void *priv,
 				struct list_head *a, struct list_head *b)
 {
 	struct list_head *tail = head;
-	__u8 count = 0;
+	u8 count = 0;
 
 	while (a && b) {
 		/* if equal, take 'a' -- important for sort stability */

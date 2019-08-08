@@ -280,8 +280,7 @@ static inline int plist_node_empty(const struct plist_node *node)
  */
 static inline struct plist_node *plist_first(const struct plist_head *head)
 {
-	return list_entry(head->node_list.next,
-			  struct plist_node, node_list);
+	return list_entry(head->node_list.next, struct plist_node, node_list);
 }
 
 /**
@@ -292,8 +291,7 @@ static inline struct plist_node *plist_first(const struct plist_head *head)
  */
 static inline struct plist_node *plist_last(const struct plist_head *head)
 {
-	return list_entry(head->node_list.prev,
-			  struct plist_node, node_list);
+	return list_entry(head->node_list.prev, struct plist_node, node_list);
 }
 
 #endif

@@ -22,7 +22,10 @@
 
 #include <fifo.h>
 #include <stdlib.h>
+#include <string.h>
 #include <assert.h>
+#include <errno.h>
+#include <compiler.h>
 
 static fifo_buffer *fifo_alloc_common(void *buffer, size_t size)
 {
@@ -114,7 +117,7 @@ int fifo_grow(fifo_buffer *f, unsigned int size)
     size += fifo_size(f);
 
     if (old_size < size)
-        return fifo_realloc2(f, FFMAX(size, 2*old_size));
+        return fifo_realloc2(f, max(size, 2*old_size));
     return 0;
 }
 
